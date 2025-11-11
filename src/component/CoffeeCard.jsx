@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const CoffeeCard = ({ coffee }) => {
@@ -20,20 +21,34 @@ const CoffeeCard = ({ coffee }) => {
         }).then((result) => {
             console.log(result.isConfirmed)
             if (result.isConfirmed) {
-                
 
-                // Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your file has been deleted.",
-                //     icon: "success"
-                // });
+                fetch(`http://localhost:3000/coffees/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(result => result.json())
+                    .then(data => {
+                        console.log('after deleted data', data)
+                        if (data.deletedCount) {
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your coffee has been deleted.",
+                                icon: "success"
+                            });
+
+                        }
+
+                    })
+
             }
         });
 
 
     }
     return (
-        <div className="bg-[#F5F4F1]  rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md hover:shadow-lg transition">
+        <div className="bg-[#F5F4F1] w-11/12 mx-auto rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md hover:shadow-lg transition bg-cover bg-center"
+        
+        >
             {/* Image */}
             <div className="w-full md:w-1/4 flex justify-center">
                 <img
@@ -58,9 +73,12 @@ const CoffeeCard = ({ coffee }) => {
 
             {/* Action Buttons */}
             <div className=" md:flex-col flex gap-3">
-                <button className="btn btn-sm bg-[#D2B48C] border-none hover:bg-[#b89a6d] text-white">
-                    <FaEye />
-                </button>
+                <Link to={`/coffee/${_id}`}>
+                    <button className="btn btn-sm bg-[#D2B48C] border-none hover:bg-[#b89a6d] text-white">
+                        <FaEye />
+                    </button>
+                </Link>
+
                 <button className="btn btn-sm bg-gray-600 border-none hover:bg-gray-700 text-white">
                     <FaEdit />
                 </button>

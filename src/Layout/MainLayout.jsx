@@ -5,8 +5,11 @@ import Header from '../component/Header';
 const MainLayout = () => {
     return (
         <div>
-            <Header></Header>
-            <div className='w-11/12 mx-auto'>
+           <header>
+             <Header></Header>
+            
+           </header>
+            <div>
                 <Outlet></Outlet>
 
             </div>

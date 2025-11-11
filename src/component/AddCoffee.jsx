@@ -1,8 +1,11 @@
 import React from 'react';
 import bgImage from '../assets/more/11.png'
 import Swal from 'sweetalert2';
+import { Link, Navigate, useNavigate } from 'react-router';
+import { BsArrowLeft } from 'react-icons/bs';
 
 const AddCoffee = () => {
+    const navigate = useNavigate()
     const handleAddCoffee = e => {
         e.preventDefault();
         const form = e.target;
@@ -27,8 +30,11 @@ const AddCoffee = () => {
                         draggable: true,
                         timer: 1500
                     });
+
+                    navigate('/')
                 }
                 form.reset()
+                
 
 
             })
@@ -36,12 +42,25 @@ const AddCoffee = () => {
     }
 
     return (
-        <div
-            className='p-16  bg-[#F4F3F0] my-12 bg-cover bg-center bg-no-repeat '
-            style={{ backgroundImage: { bgImage } }}
+      <div className='bg-cover bg-center bg-no-repeat  '
+      style={{ backgroundImage: `url(${bgImage})` }}>
+
+          <div
+            className='p-16  bg-[#F4F3F0] w-10/12 my-12 mx-auto '
+           
         >
+
+            <div className="w-10/12 mb-8">
+                <Link
+                    to="/"
+                    className="flex items-center gap-2 text-[#374151] font-semibold hover:text-[#E3B577] transition-colors"
+                >
+                    <BsArrowLeft size={20} />
+                    <span className='rancho'>Back to Home</span>
+                </Link>
+            </div>
             <div className=' space-y-5 text-center mb-10 '>
-                <h1 className='text-3xl font-semibold'>Add Coffee</h1>
+                <h1 className='text-3xl font-semibold rancho'>Add New Coffee</h1>
                 <p>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
 
 
@@ -83,6 +102,7 @@ const AddCoffee = () => {
             </form>
 
         </div>
+      </div>
     );
 };
 
