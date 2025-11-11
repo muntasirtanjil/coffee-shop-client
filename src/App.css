@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.rancho {
+    font-family: 'Rancho', cursive;
+}
