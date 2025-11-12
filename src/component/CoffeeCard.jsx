@@ -3,8 +3,8 @@ import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
-const CoffeeCard = ({ coffee }) => {
-    console.log(coffee)
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
+    // console.log(coffee)
     const { _id, name, quantity, price, photoURL } = coffee;
 
     const handleDelete = (_id) => {
@@ -33,9 +33,12 @@ const CoffeeCard = ({ coffee }) => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your coffee has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                timer: 1500,
                             });
 
+                            const remainningCoffees = coffees.filter(cof => cof._id !== _id)
+                            setCoffees(remainningCoffees)
                         }
 
                     })
@@ -47,7 +50,7 @@ const CoffeeCard = ({ coffee }) => {
     }
     return (
         <div className="bg-[#F5F4F1] w-11/12 mx-auto rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md hover:shadow-lg transition bg-cover bg-center"
-        
+
         >
             {/* Image */}
             <div className="w-full md:w-1/4 flex justify-center">
@@ -79,9 +82,11 @@ const CoffeeCard = ({ coffee }) => {
                     </button>
                 </Link>
 
-                <button className="btn btn-sm bg-gray-600 border-none hover:bg-gray-700 text-white">
-                    <FaEdit />
-                </button>
+                <Link to={`/updateCoffee/${_id}`}>
+                    <button className="btn btn-sm bg-gray-600 border-none hover:bg-gray-700 text-white">
+                        <FaEdit />
+                    </button>
+                </Link>
                 <button onClick={() => handleDelete(_id)} className="btn btn-sm bg-red-600 border-none hover:bg-red-700 text-white">
                     <FaTrash />
                 </button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import bgImage from '../assets/more/11.png'
 import Swal from 'sweetalert2';
-import { Link, Navigate, useNavigate } from 'react-router';
+import { Link,  useNavigate } from 'react-router';
 import { BsArrowLeft } from 'react-icons/bs';
 
 const AddCoffee = () => {
