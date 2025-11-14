@@ -9,12 +9,12 @@ const CoffeeDetails = () => {
 
 
     return (
-        <div className="min-h-screen w-11/12 mx-auto bg-[#F4F3F0] flex flex-col items-center py-10">
+        <div className="min-h-screen w-11/12 mx-auto bg-[#F4F3F0] rounded-2xl mt-5 flex flex-col items-center py-10">
             {/* Back Button */}
             <div className="w-10/12 mb-8">
                 <Link
                     to="/"
-                    className="flex items-center gap-2 text-[#374151] font-semibold hover:text-[#E3B577] transition-colors"
+                    className="flex items-center gap-2 rancho text-[#374151] font-semibold hover:text-[#E3B577] transition-colors"
                 >
                     <BsArrowLeft size={20} />
                     <span className='rancho'> Back to Home</span>
@@ -34,8 +34,8 @@ const CoffeeDetails = () => {
 
                 {/* Info */}
                 <div className="md:w-2/3 space-y-3 font-raleway text-gray-700">
-                    <h2 className="text-2xl font-rancho text-[#331A15] mb-3">Niceties</h2>
-                    <p><span className="font-semibold text-[#331A15]">Name:</span> {name}</p>
+                    <h2 className="text-2xl font-rancho text-[#331A15] mb-3 rancho">Niceties</h2>
+                    <p><span className="font-semibold text-[#331A15] ">Name:</span> {name}</p>
                     <p><span className="font-semibold text-[#331A15]">price:</span> {price}</p>
                     <p><span className="font-semibold text-[#331A15]">Supplier:</span> {supplier}</p>
                     <p><span className="font-semibold text-[#331A15]">Taste:</span> {taste}</p>
