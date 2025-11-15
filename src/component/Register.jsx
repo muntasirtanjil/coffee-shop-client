@@ -2,14 +2,18 @@
 import { use } from 'react';
 import AuthProvider, { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const Register = () => {
     const { register } = use(AuthContext);
+    const navigate = useNavigate()
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const { email, password, ...userProfile } = Object.fromEntries(formData.entries());
+        const { email, password, ...rest } = Object.fromEntries(formData.entries());
+
+
 
 
         // console.log(email, password, userProfile)
@@ -17,7 +21,13 @@ const Register = () => {
         register(email, password)
             .then(result => {
                 const user = result.user;
-                // console.log(user)
+                console.log(user);
+                const userProfile = {
+                    email,
+                    ...rest,
+                    creationTime: result.user?.metadata?.creationTime,
+                    lastSignInTime: result.user?.metadata?.lastSignInTime
+                }
 
                 fetch('http://localhost:3000/users', {
                     method: "POST",
@@ -37,7 +47,11 @@ const Register = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
+
+
                         }
+                        form.reset();
+                        navigate('/users');
                     })
 
             })
