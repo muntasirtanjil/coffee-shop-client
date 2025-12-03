@@ -16,7 +16,7 @@ const Login = () => {
                     email,
                     lastSignInTime: result.user?.metadata?.lastSignInTime
                 }
-                fetch('http://localhost:5173/users', {
+                fetch('http://localhost:3000/users', {
                     method: "PATCH",
                     headers: {
                         'content-type': "application/json",
